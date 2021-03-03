@@ -3,18 +3,26 @@ import logo from './logo.svg';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import './App.css';
+import Home from './Home/home';
+import Location from './Location/location'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Hei gruppe 5!</h1>
-      </header>
-    </div>
+    <Router>
+      
+        <Switch>
+          <Route path="/location/:id">
+            {/* :id is the parameter used to define which location to get from backend*/}
+              <Location/>
+          </Route>
+          <Route path="/">
+            <Home/>
+          </Route>
+        </Switch>
+    </Router>
   );
 }
 

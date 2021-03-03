@@ -9,6 +9,7 @@ import './App.css';
 import Home from './Home/home';
 import Location from './Location/location';
 import Header from './Header/header';
+import Footer from './Footer/footer';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Home/>
           </Route>
         </Switch>
+        <Footer/>
     </Router>
   );
 }

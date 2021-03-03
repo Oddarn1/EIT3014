@@ -1,0 +1,29 @@
+
+h1 {
+    color: rgb(0, 0, 0);
+    text-align: center;
+    position: relative
+}
+    
+p {
+    color: rgb(0, 0, 0);
+    text-align: center;
+    width: 320px;
+    padding: 10px;
+    border: none;
+    margin: auto;
+}
+
+button {
+    background-color: #f50404;
+    border: none;
+    position: relative;
+    color: rgb(255, 255, 255);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    font-size: 16px;
+    margin: auto;
+    border-radius: 8px;
+}

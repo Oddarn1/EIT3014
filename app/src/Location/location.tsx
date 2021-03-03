@@ -2,42 +2,10 @@ import React from 'react';
 import {FirebaseDatabaseNode} from '@react-firebase/database';
 import {useParams, useLocation} from 'react-router-dom';
 import queryString from 'query-string';
-import firebase from 'firebase';
+import Image from './image';
 
 interface locationParams {
     id: string;
-}
-
-interface imageInterface {
-    small: string;
-    medium: string;
-    large: string;
-    full: string;
-}
-
-const GetImage = (props: {urls: imageInterface, difficulty: string | string[] | null}) => {
-    const [downloadUrl, setUrl] = React.useState("");
-    var url;
-    switch (props.difficulty){
-        case "1":
-            url = props.urls.full;
-            break;
-        case "2":
-            url = props.urls.large;
-            break;
-        case "3":
-            url = props.urls.medium;
-            break;
-        case "4":
-            url = props.urls.small;
-            break;
-        default:
-            url = props.urls.full;
-            break;            
-    }
-    var storage = firebase.storage();
-    storage.refFromURL(url).getDownloadURL().then(dUrl=> setUrl(dUrl))
-    return <img src={downloadUrl} alt="Bilde"/>
 }
 
 const updateDifficulty = (diff:string) => {
@@ -75,7 +43,7 @@ const Location = () => {
                 return (
                   <React.Fragment>
                       <div>
-                          {!d.isLoading && d.value && <GetImage urls={d.value} difficulty={difficulty}/>}
+                          {!d.isLoading && d.value && <Image urls={d.value} difficulty={difficulty}/>}
                       </div>
                   </React.Fragment>
                 );

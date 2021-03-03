@@ -7,13 +7,15 @@ import {
 } from "react-router-dom";
 import './App.css';
 import Home from './Home/home';
+import Location from './Location/location';
+import Header from './Header/header';
+import Footer from './Footer/footer';
 import Difficulty from './Difficulty/difficulty';
-import Location from './Location/location'
 
 function App() {
   return (
     <Router>
-      
+      <Header/>
         <Switch>
           <Route path="/location/:id">
             {/* :id is the parameter used to define which location to get from backend*/}
@@ -26,6 +28,7 @@ function App() {
             <Home/>
           </Route>
         </Switch>
+        <Footer/>
     </Router>
   );
 }

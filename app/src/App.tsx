@@ -21,7 +21,7 @@ function App() {
             {/* :id is the parameter used to define which location to get from backend*/}
               <Location/>
           </Route>
-          <Route path="/Difficulty">
+          <Route path="/difficulty">
             <Difficulty/>
           </Route>
           <Route path="/">

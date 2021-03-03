@@ -7,6 +7,7 @@ const Difficulty = () => {
     return (
         <div>
             Difficulty
+            <Link to={"/location/1?difficulty=3"}>Test</Link>
         </div>
     )
 }

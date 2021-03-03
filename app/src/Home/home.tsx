@@ -1,26 +1,35 @@
 import React from 'react';
 import './home.css';
 import {
-    Link
+    Link,
+    withRouter
   } from "react-router-dom";
 
 const Home = () => {
+    const currentGame = localStorage.getItem("currentlyPlayingId");
+    const currentDifficulty = localStorage.getItem("currentDifficulty");
     return (
         <div>
             <h1>
                 TrondheimGuessr
             </h1>
             {homeText()}
-            <Link to="/Difficulty">
+            <Link to="/difficulty">
                 <button>
                     Spill
                 </button>
             </Link>
+            {currentGame && 
+            <p>
+                Du spiller for øyeblikket et spill, fortsette på dette?
+                <br/>
+                <Link to={`/location/${currentGame}?difficulty=${currentDifficulty}`}>Fortsett</Link>
+            </p>}
         </div>
     )
 }
 
-export default Home;
+export default withRouter(Home);
 
 function homeText(){
     return <p>Velkommen til spillet hvor dine geografiske

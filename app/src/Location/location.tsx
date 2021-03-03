@@ -25,7 +25,7 @@ const Location = () => {
     const { id } = useParams<locationParams>();
     const { search } = useLocation();
     const [difficulty, setDifficulty] = React.useState(queryString.parse(search).difficulty?.toString() || "");
-    const [correctGuess, setCorrectGuess] = React.useState<boolean|null>(null);
+    const [correctGuess, setCorrectGuess] = React.useState(0);
     localStorage.setItem("currentlyPlayingId", id);
     localStorage.setItem("currentDifficulty", difficulty);
     return (
@@ -49,11 +49,11 @@ const Location = () => {
                 );
               }}
             </FirebaseDatabaseNode>
-            <button onClick={()=>setCorrectGuess(false)}>
+            <button onClick={()=>setCorrectGuess(1)}>
                 Jeg er her!
             </button>
-            {correctGuess === false && <button onClick={()=>setDifficulty(updateDifficulty(difficulty))}>Jeg trenger hjelp</button>}
-            {correctGuess === false && difficulty === "1" && <p style={{color: "red"}}>Du kan dessverre ikke få mer hjelp :(</p>}
+            {correctGuess === 1 && <button onClick={()=>{setDifficulty(updateDifficulty(difficulty)); setCorrectGuess(0);}}>Jeg trenger hjelp</button>}
+            {correctGuess === 1 && difficulty === "1" && <p style={{color: "red"}}>Du kan dessverre ikke få mer hjelp :(</p>}
         </div>
     )
 }

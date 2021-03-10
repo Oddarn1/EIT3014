@@ -22,7 +22,7 @@ const updateDifficulty = (diff:string) => {
 }
 
 const Location = () => {
-    const distanceThreshold = 0.1;
+    const distanceThreshold = 1;
     const { id } = useParams<locationParams>();
     const { search } = useLocation();
     const history = useHistory();

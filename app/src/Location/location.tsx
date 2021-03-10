@@ -36,14 +36,14 @@ const Location = () => {
                 </h3>
             </div>
             <FirebaseDatabaseNode
-              path={`locations/${id}/images`}
+              path={`locations/${id}`}
               orderByKey={difficulty}
             >
               {d => {
                 return (
                   <React.Fragment>
                       <div>
-                          {!d.isLoading && d.value && <Image urls={d.value} difficulty={difficulty}/>}
+                          {!d.isLoading && d.value && <Image urls={d.value.images} difficulty={difficulty}/>}
                       </div>
                   </React.Fragment>
                 );

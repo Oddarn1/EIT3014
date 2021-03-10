@@ -1,4 +1,5 @@
 import React from 'react';
+import {FirebaseDatabaseNode} from '@react-firebase/database';
 import {useParams} from 'react-router-dom';
 
 interface informationParams {
@@ -9,7 +10,20 @@ const Information = () => {
     const { id } = useParams<informationParams>();
     return (
         <div>
-            Test
+            <FirebaseDatabaseNode
+              path={`locations/${id}`}
+              
+            >
+              {d => {
+                return (
+                  <React.Fragment>
+                      <div>
+                          {!d.isLoading && d.value && <p>{d.value.desc}</p>}
+                      </div>
+                  </React.Fragment>
+                );
+              }}
+            </FirebaseDatabaseNode>
         </div>
     )
 }

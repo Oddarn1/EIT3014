@@ -3,6 +3,7 @@ import {FirebaseDatabaseNode} from '@react-firebase/database';
 import {useParams, useLocation, withRouter, useHistory} from 'react-router-dom';
 import queryString from 'query-string';
 import Image from './image';
+import firebase from 'firebase';
 
 interface locationParams {
     id: string;
@@ -22,15 +23,22 @@ const updateDifficulty = (diff:string) => {
 }
 
 const Location = () => {
-    const distanceThreshold = 1;
     const { id } = useParams<locationParams>();
     const { search } = useLocation();
     const history = useHistory();
+    const [distanceThreshold, setDistanceThreshold] = React.useState(0);
     const [difficulty, setDifficulty] = React.useState(queryString.parse(search).difficulty?.toString() || "");
     const [correctGuess, setCorrectGuess] = React.useState(0);  // 0 = no guess, -1 = wrong guess, 1 = correct guess
     const [error, setError] = React.useState<String | null>(null);
     localStorage.setItem("currentlyPlayingId", id);
     localStorage.setItem("currentDifficulty", difficulty);
+
+    React.useEffect(()=>{
+        var distRef = firebase.database().ref("distance_threshold");
+        distRef.on('value', snapshot => {
+            setDistanceThreshold(snapshot.val());
+        })
+    }, []);
 
     const getLocation = (targetLocation:{lat:number, lon:number}, locationThreshold:number) => {
         navigator.permissions.query({ name: 'geolocation' }).then(p=>{

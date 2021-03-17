@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
+import {imageContainer, image} from './style';
 
 interface imageInterface {
     small: string;
@@ -8,7 +9,12 @@ interface imageInterface {
     full: string;
 }
 
-const Image = (props: {urls: imageInterface, difficulty: string | string[] | null}) => {
+interface IProps{
+    urls: imageInterface; 
+    difficulty: string | string[] | null;
+}
+
+const Image:React.FC<IProps> = (props: IProps) => {
     const [downloadUrl, setUrl] = React.useState("");
     var url;
     switch (props.difficulty){
@@ -30,7 +36,11 @@ const Image = (props: {urls: imageInterface, difficulty: string | string[] | nul
     }
     var storage = firebase.storage();
     storage.refFromURL(url).getDownloadURL().then(dUrl=> setUrl(dUrl))
-    return <img src={downloadUrl} alt="Bilde"/>
+    return (
+    <div className={imageContainer}>
+        <img className={image} src={downloadUrl} alt="Bilde"/>
+    </div>
+    )
 }
 
 export default Image;

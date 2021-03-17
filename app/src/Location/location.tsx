@@ -4,6 +4,7 @@ import {useParams, useLocation, withRouter, useHistory} from 'react-router-dom';
 import queryString from 'query-string';
 import Image from './image';
 import firebase from 'firebase';
+import ImageSpinner from './imageSpinner';
 
 interface locationParams {
     id: string;
@@ -62,8 +63,8 @@ const Location = () => {
     };
 
     return (
-        <div>
-            <div>
+        <div style={{display:"flex", flexDirection:"column", height:"calc(100vh - 125px)"}}>
+            <div style={{justifyContent:"center", display:"flex"}}>
                 <h3>
                     Din oppgave er å finne dette stedet:
                 </h3>
@@ -75,9 +76,11 @@ const Location = () => {
               {d => {
                 return (
                   <React.Fragment>
-                      <div>
-                          {!d.isLoading && d.value && <Image urls={d.value.images} difficulty={difficulty}/>}
-                          <button onClick={()=>getLocation({lat:d.value.lat, lon: d.value.lon}, distanceThreshold)}>
+                      <div style={{justifyContent:"center", display:"flex", flexDirection:"column"}}>
+                          <div style={{justifyContent:"center", display:"flex"}}>
+                              <ImageSpinner loading={d.isLoading} color={"#C4C4C4"} d={d} difficulty={difficulty}/>
+                          </div>
+                          <button style={{backgroundColor:"#8BE989", color: "#000"}} onClick={()=>getLocation({lat:d.value.lat, lon: d.value.lon}, distanceThreshold)}>
                             Jeg er her!
                             </button>
                       </div>
@@ -86,7 +89,7 @@ const Location = () => {
               }}
             </FirebaseDatabaseNode>
             {error && <p style={{color:"red"}}> {error} </p>}
-            {correctGuess === -1 && <button onClick={()=>{setDifficulty(updateDifficulty(difficulty)); setCorrectGuess(0);}}>Jeg trenger hjelp</button>}
+            {correctGuess === -1 && <button style={{backgroundColor:"#C6F5FF", color: "#000"}} onClick={()=>{setDifficulty(updateDifficulty(difficulty)); setCorrectGuess(0);}}>Jeg trenger hjelp</button>}
             {correctGuess === -1 && difficulty === "1" && <p style={{color: "red"}}>Du kan dessverre ikke få mer hjelp :(</p>}
         </div>
     )

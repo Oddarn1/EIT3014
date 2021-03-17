@@ -9,7 +9,8 @@ const Home = () => {
     const currentGame = localStorage.getItem("currentlyPlayingId");
     const currentDifficulty = localStorage.getItem("currentDifficulty");
     return (
-        <div>
+        <div style={{display:"flex", flexDirection:"column", height:"calc(100vh - 125px)"}}>
+            <div>
             <h1>
                 TrondheimGuessr
             </h1>
@@ -25,6 +26,7 @@ const Home = () => {
                 <br/>
                 <Link to={`/location/${currentGame}?difficulty=${currentDifficulty}`}>Fortsett</Link>
             </p>}
+            </div>
         </div>
     )
 }

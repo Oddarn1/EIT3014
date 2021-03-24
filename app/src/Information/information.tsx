@@ -1,6 +1,7 @@
 import React from 'react';
 import {FirebaseDatabaseNode} from '@react-firebase/database';
 import {useParams} from 'react-router-dom';
+import Adressa from "./adressa"
 
 interface informationParams {
     id: string;
@@ -24,6 +25,7 @@ const Information = () => {
                 );
               }}
             </FirebaseDatabaseNode>
+            {id === "3" && <Adressa/> }
         </div>
     )
 }

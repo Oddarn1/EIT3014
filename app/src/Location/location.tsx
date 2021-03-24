@@ -4,7 +4,6 @@ import {useParams, useLocation, withRouter, useHistory} from 'react-router-dom';
 import queryString from 'query-string';
 import Image from './image';
 import firebase from 'firebase';
-import ImageSpinner from './imageSpinner';
 
 interface locationParams {
     id: string;
@@ -82,7 +81,7 @@ const Location = () => {
                   <React.Fragment>
                       <div style={{justifyContent:"center", display:"flex", flexDirection:"column"}}>
                           <div style={{justifyContent:"center", display:"flex"}}>
-                              <Image loading={d.isLoading} color={"#C4C4C4"} d={d} difficulty={difficulty}/>
+                              <Image loading={d.isLoading} d={d} difficulty={difficulty}/>
                           </div>
                           <button style={{backgroundColor:"#8BE989", color: "#000"}} onClick={()=>getLocation({lat:d.value.lat, lon: d.value.lon}, distanceThreshold)}>
                             Jeg er her!

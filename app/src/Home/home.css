@@ -21,10 +21,10 @@ p {
 }
 
 button {
-    background-color: #f50404;
+    background-color: #577AF8;
     position: relative;
     border: none;
-    color: rgb(255, 255, 255);
+    color: rgb(0,0,0);
     padding: 15px 32px;
     width: 250px;
     text-align: center;

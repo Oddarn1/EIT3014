@@ -5,7 +5,6 @@ import HashLoader from 'react-spinners/HashLoader';
 
 interface IProps{
     loading: boolean;
-    color: string;
     css?: any;
     children?: React.ReactNode;
     d: any;
@@ -48,8 +47,10 @@ const Image:React.FC<IProps> = (props: IProps) => {
 
     return (
     <div className={imageContainer}>
-        {loading ? 
-        <HashLoader color={props.color}/>:
+        {loading? 
+        <div style={{display:"flex", marginTop: "100px"}}>
+            <HashLoader color={"#C4C4C4"}/>
+        </div>:
         <img className={image} src={downloadUrl} alt="Bilde"/>}
     </div>
     )

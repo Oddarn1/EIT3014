@@ -14,9 +14,9 @@ interface Iprops{
 const ImageSpinner = (props:Iprops) => {
     return (
         <React.Fragment>
-            {props.loading ? 
+            {props.loading || !props.d.value ? 
             <HashLoader color={props.color}/>:
-            (props.d.value && <Image urls={props.d.value.images} difficulty={props.difficulty}/>)}
+            <></>}
         </React.Fragment>
     )
 }

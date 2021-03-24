@@ -28,6 +28,7 @@ const Location = () => {
     const { search } = useLocation();
     const history = useHistory();
     const [distanceThreshold, setDistanceThreshold] = React.useState(0);
+    const [loadingDistance, setLoadingDistance] = React.useState(false);
     const [difficulty, setDifficulty] = React.useState(queryString.parse(search).difficulty?.toString() || "");
     const [correctGuess, setCorrectGuess] = React.useState(0);  // 0 = no guess, -1 = wrong guess, 1 = correct guess
     const [error, setError] = React.useState<String | null>(null);
@@ -35,16 +36,18 @@ const Location = () => {
     localStorage.setItem("currentDifficulty", difficulty);
 
     React.useEffect(()=>{
+        setLoadingDistance(true);
         var distRef = firebase.database().ref("distance_threshold");
         distRef.on('value', snapshot => {
             setDistanceThreshold(snapshot.val());
+            setLoadingDistance(false);
         })
     }, []);
 
     const getLocation = (targetLocation:{lat:number, lon:number}, locationThreshold:number) => {
         navigator.permissions.query({ name: 'geolocation' }).then(p=>{
             if (p.state === "denied"){
-                setError("You must enable geolocation on your device");
+                setError("Nettsiden må ha tilgang til enhetens posisjon for å kunne spille. Du kan skru på dette ved å trykke på låseikonet i nettleseren din, og tillate sted.");
             }
         });
         if (navigator.geolocation && !error){
@@ -69,6 +72,7 @@ const Location = () => {
                     Din oppgave er å finne dette stedet:
                 </h3>
             </div>
+            {!loadingDistance && 
             <FirebaseDatabaseNode
               path={`locations/${id}`}
               orderByKey={difficulty}
@@ -78,7 +82,7 @@ const Location = () => {
                   <React.Fragment>
                       <div style={{justifyContent:"center", display:"flex", flexDirection:"column"}}>
                           <div style={{justifyContent:"center", display:"flex"}}>
-                              <ImageSpinner loading={d.isLoading} color={"#C4C4C4"} d={d} difficulty={difficulty}/>
+                              <Image loading={d.isLoading} color={"#C4C4C4"} d={d} difficulty={difficulty}/>
                           </div>
                           <button style={{backgroundColor:"#8BE989", color: "#000"}} onClick={()=>getLocation({lat:d.value.lat, lon: d.value.lon}, distanceThreshold)}>
                             Jeg er her!
@@ -87,7 +91,7 @@ const Location = () => {
                   </React.Fragment>
                 );
               }}
-            </FirebaseDatabaseNode>
+            </FirebaseDatabaseNode>}
             {error && <p style={{color:"red"}}> {error} </p>}
             {correctGuess === -1 && 
                 (difficulty === "1" ? 

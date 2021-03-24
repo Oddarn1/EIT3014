@@ -89,8 +89,10 @@ const Location = () => {
               }}
             </FirebaseDatabaseNode>
             {error && <p style={{color:"red"}}> {error} </p>}
-            {correctGuess === -1 && <button style={{backgroundColor:"#C6F5FF", color: "#000"}} onClick={()=>{setDifficulty(updateDifficulty(difficulty)); setCorrectGuess(0);}}>Jeg trenger hjelp</button>}
-            {correctGuess === -1 && difficulty === "1" && <p style={{color: "red"}}>Du kan dessverre ikke få mer hjelp :(</p>}
+            {correctGuess === -1 && 
+                (difficulty === "1" ? 
+                <p style={{color: "red"}}>Du kan dessverre ikke få mer hjelp :(</p> : 
+                <button style={{backgroundColor:"#C6F5FF", color: "#000"}} onClick={()=>{setDifficulty(updateDifficulty(difficulty)); setCorrectGuess(0);}}>Jeg trenger hjelp</button>)}
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import firebase from 'firebase';
 import {imageContainer, image} from './style';
-import HashLoader from 'react-spinners/HashLoader';
+import { SyncLoader } from 'react-spinners';
 
 interface IProps{
     loading: boolean;
@@ -49,7 +49,7 @@ const Image:React.FC<IProps> = (props: IProps) => {
     <div className={imageContainer}>
         {loading? 
         <div style={{display:"flex", marginTop: "100px"}}>
-            <HashLoader color={"#C4C4C4"}/>
+            <SyncLoader color={"#C4C4C4"}/>
         </div>:
         <img className={image} src={downloadUrl} alt="Bilde"/>}
     </div>

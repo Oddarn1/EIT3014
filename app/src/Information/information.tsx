@@ -1,7 +1,7 @@
 import React from 'react';
 import {FirebaseDatabaseNode} from '@react-firebase/database';
 import {Link, useParams} from 'react-router-dom';
-import { HashLoader } from 'react-spinners';
+import { SyncLoader } from 'react-spinners';
 
 interface informationParams {
     id: string;
@@ -20,7 +20,7 @@ const Information = () => {
                       <div>
                           {d.isLoading || !d.value ? 
                           <div style={{display:"flex", justifyContent:"center", marginTop: "25px"}}>
-                            <HashLoader color={"#C4C4C4"}/>
+                            <SyncLoader color={"#C4C4C4"}/>
                           </div>:
                           <div>
                             <h3>Gratulerer, du fant {d.value.name}!</h3>

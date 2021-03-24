@@ -11,6 +11,7 @@ import Location from './Location/location';
 import Header from './Header/header';
 import Footer from './Footer/footer';
 import Difficulty from './Difficulty/difficulty';
+import Information from './Information/information';
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
           </Route>
           <Route path="/difficulty">
             <Difficulty/>
+          </Route>
+          <Route path="/information/:id">
+            <Information/>
           </Route>
           <Route path="/">
             <Home/>

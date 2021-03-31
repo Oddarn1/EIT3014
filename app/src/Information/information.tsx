@@ -10,6 +10,7 @@ interface informationParams {
 
 const Information = () => {
     const { id } = useParams<informationParams>();
+    const [adressaLoading, setAdressaLoading] = React.useState(false);
     return (
         <div style={{display:"flex", flexDirection:"column", height:"calc(100vh - 125px)"}}>
             <FirebaseDatabaseNode
@@ -19,14 +20,15 @@ const Information = () => {
                 return (
                   <React.Fragment>
                       <div>
-                          {d.isLoading || !d.value ? 
+                          {adressaLoading || d.isLoading || !d.value ? 
                           <div style={{display:"flex", justifyContent:"center", marginTop: "25px"}}>
                             <SyncLoader color={"#C4C4C4"}/>
                           </div>:
                           <div>
                             <h3>Gratulerer, du fant {d.value.name}!</h3>
                             <p> {d.value.desc}</p>
-                            </div>}
+                            {id === "3" && <Adressa setLoading={setAdressaLoading}/> }
+                          </div>}
                       </div>
                   </React.Fragment>
                 );
@@ -39,7 +41,6 @@ const Information = () => {
             <Link to="/"> 
               <button style={{backgroundColor:"#C6F5FF", color: "#000"}}>Nei</button>
             </Link>
-            {id === "3" && <Adressa/> }
         </div>
     )
 }

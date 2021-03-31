@@ -2,6 +2,7 @@ import React from 'react';
 import {FirebaseDatabaseNode} from '@react-firebase/database';
 import {Link, useParams} from 'react-router-dom';
 import { SyncLoader } from 'react-spinners';
+import Adressa from "./adressa"
 
 interface informationParams {
     id: string;
@@ -38,6 +39,7 @@ const Information = () => {
             <Link to="/"> 
               <button style={{backgroundColor:"#C6F5FF", color: "#000"}}>Nei</button>
             </Link>
+            {id === "3" && <Adressa/> }
         </div>
     )
 }

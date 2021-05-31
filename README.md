@@ -6,7 +6,9 @@ This project is the final delivery of Group 5 in the course EIT3014 - Fortalt Di
 
 ## Setup and running locally
 Make sure to have npm installed on your computer.
+
 `npm install` to install dependencies
+
 `npm start` to run the server locally on `localhost:3000`
 
 ## CI/CD
